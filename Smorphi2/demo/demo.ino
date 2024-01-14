@@ -1,3 +1,452 @@
+// //This example code is in the Public Domain (or CC0 licensed, at your option.)
+// //By Evandro Copercini - 2018
+// //
+// //This example creates a bridge between Serial and Classical Bluetooth (SPP)
+// //and also demonstrate that SerialBT have the same functionalities of a normal Serial
+// #include "smorphi.h"
+
+// Smorphi my_robot;
+
+
+// String command = "";
+// String data_received = "";
+
+
+// void setup() {
+//   Serial.begin(115200); 
+//   my_robot.BeginSmorphi();
+//   Wire.begin();
+// }
+ 
+
+// void loop() {
+//   while (Serial.available()) {
+
+//     data_received = data_received + char(Serial.read());
+
+//     if (data_received == "shape_i") {
+//       my_robot.I();  
+//       Serial.print("transmission complete!! ");
+//       Serial.println(data_received);
+//       data_received = "";
+//     }
+//     else if (data_received == "shape_o") {
+//       my_robot.O(); 
+//       Serial.print("transmission complete!! ");
+//       Serial.println(data_received);
+//       data_received = "";
+//     }
+//     else if (data_received == "shape_l") {
+// //      Serial.println(command.substring(0,1));
+//       my_robot.L(); 
+//       Serial.print("transmission complete!! ");
+//       Serial.println(data_received);
+//       data_received = "";
+//     }
+//     else if (data_received == "shape_j") {
+// //      Serial.println(command.substring(0,1));
+//       my_robot.J(); 
+//       Serial.print("transmission complete!! ");
+//       Serial.println(data_received);
+//       data_received = "";
+//     }
+//     else if (data_received == "shape_z") {
+// //      Serial.println(command.substring(0,1));
+//       my_robot.Z(); 
+//       Serial.print("transmission complete!! ");
+//       Serial.println(data_received);
+//       data_received = "";
+//     }
+//     else if (data_received == "shape_s") {
+// //      Serial.println(command.substring(0,1));
+//       my_robot.S(); 
+//       Serial.print("transmission complete!! ");
+//       Serial.println(data_received);
+//       data_received = "";
+//     }
+//     else if (data_received == "shape_t") {
+// //      Serial.println(command.substring(0,1));
+//       my_robot.T(); 
+//       Serial.print("transmission complete!! ");
+//       Serial.println(data_received);
+//       data_received = "";
+//     }
+    
+//     else if (data_received == "forwardfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveForward(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "forwardmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveForward(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "forwardmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveForward(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "forwardslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveForward(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "backwardfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveBackward(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "backwardmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveBackward(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "backwardmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveBackward(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "backwardslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveBackward(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "leftfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveLeft(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "leftmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveLeft(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "leftmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveLeft(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "leftslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveLeft(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "rightfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveRight(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "rightmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveRight(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "rightmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveRight(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "rightslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveRight(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "upleftfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpLeft(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "upleftmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpLeft(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "upleftmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpLeft(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "upleftslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpLeft(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "uprightfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpRight(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "uprightmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpRight(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "uprightmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpRight(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "uprightslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagUpRight(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downleftfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownLeft(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downleftmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownLeft(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downleftmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownLeft(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downleftslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownLeft(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downrightfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownRight(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downrightmidfast"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownRight(75);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downrightmidslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownRight(50);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "downrightslow"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.MoveDiagDownRight(25);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+
+//     else if (data_received == "pivot_left"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.CenterPivotLeft(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "pivot_right"){
+//       // if(command.substring(11,12) == "#"){
+//         my_robot.CenterPivotRight(100);
+//         data_received = "";
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         break;
+//       // }
+//     }
+  
+//     else if (data_received == "st"){
+//       // if(command.substring(5,6) == "#"){
+//         my_robot.stopSmorphi();
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         data_received = "";
+//         break;
+//       // }
+//     }
+
+//     else if (data_received == "shape_1" || data_received == "shape_2"){
+//       // if(command.substring(5,6) == "#"){    
+//         Serial.print("transmission complete!! ");
+//         Serial.println(data_received);
+//         data_received = "";
+//         break;
+//       // }
+//     }
+
+
+//     my_robot.sm_reset_M1();
+//     my_robot.sm_reset_M2();
+//     my_robot.sm_reset_M3();
+//     my_robot.sm_reset_M4();
+    
+//   }
+  
+//   my_robot.sm_reset_M1();
+//   my_robot.sm_reset_M2();
+//   my_robot.sm_reset_M3();
+//   my_robot.sm_reset_M4();
+//   // delay(20);
+// }
+
 //This example code is in the Public Domain (or CC0 licensed, at your option.)
 //By Evandro Copercini - 2018
 //
@@ -8,7 +457,7 @@
 #include "esp_bt_main.h"
 #include "esp_gap_bt_api.h"
 #include "esp_bt_device.h"
-#include <smorphi.h>
+#include "smorphi.h"
 
 Smorphi my_robot;
 
